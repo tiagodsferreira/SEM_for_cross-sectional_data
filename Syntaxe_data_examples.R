@@ -1,8 +1,8 @@
 
 #1. Import data_example
 
-data_examples <-
-  read.csv2("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+url_datafile<- "https://raw.githubusercontent.com/tiagodsferreira/SEM_for_cross-sectional_data/main/data_examples.csv"
+data_examples <-read.csv2(url_datafile, sep=";", fileEncoding="UTF-8-BOM")
 
 ###################################################################################################
 #install and activate lavaan package
@@ -26,7 +26,7 @@ SA_F ~~ IEI_F
 "
 
 #3.1.2 Model estimation
-fit.example1 <- cfa(model.example1, data = data_examples)
+fit.example1 <- sem(model.example1, data = data_examples)
 
 #3.1.3 Model evaluation
 fitMeasures(fit.example1)
@@ -38,7 +38,7 @@ summary(fit.example1)
 summary(fit.example1, standardized = TRUE, rsquare = TRUE, 
         modindices=TRUE)
 
-#Instead to add this additional argument to summary()function we can opt to run the
+#Instead this additional argument to summary()function we can opt to run the
 #modificationindices() function to determine which model parameters would be result in 
 #a significant fit improvement
 
@@ -115,7 +115,7 @@ optimism ~ QEB_father
 "
 
 #3.3.2 Model estimation
-fit.example3 <- cfa(model.example3, data = data_examples)
+fit.example3 <- sem(model.example3, data = data_examples)
 
 #3.3.3 Model evaluation
 fitMeasures(fit.example3)
@@ -160,7 +160,7 @@ total_effect := a + (b*c)
 "
 
 #3.4.2 Model estimation
-fit.example4 <- cfa(model.example4, data = data_examples, bootstrap = TRUE)
+fit.example4 <- sem(model.example4, data = data_examples, se = "bootstrap", bootstrap = 5000)
 
 
 #3.4.3 Model evaluation
@@ -169,5 +169,5 @@ fitMeasures(fit.example4)
 
 #3.4.4 Model interpretation
 summary(fit.example4, standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit.example4)#To obtain the Interval confidences of parameters estimates
+parameterEstimates(fit.example4) # To obtain the Interval confidences of parameters estimates
 
