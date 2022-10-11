@@ -2,7 +2,7 @@
 #1. Import data_example
 
 url_datafile<- "https://raw.githubusercontent.com/tiagodsferreira/SEM_for_cross-sectional_data/main/data_examples.csv"
-data_examples <-read.csv2(url_datafile, sep=";", fileEncoding="UTF-8-BOM")
+data <-read.csv2(url_datafile, sep=";", fileEncoding="UTF-8-BOM")
 
 ###################################################################################################
 #install and activate lavaan package
@@ -26,7 +26,7 @@ SA_F ~~ IEI_F
 "
 
 #3.1.2 Model estimation
-fit.example1 <- sem(model.example1, data = data_examples)
+fit.example1 <- sem(model.example1, data = data)
 
 #3.1.3 Model evaluation
 fitMeasures(fit.example1)
@@ -59,7 +59,7 @@ SA_father ~~ IEI_father
 "
 
 #3.2.2 Model estimation
-fit.example2 <- cfa(model.example2, data = data_examples)
+fit.example2 <- cfa(model.example2, data = data)
 
 #3.2.3 Model evaluation
 fitMeasures(fit.example2)
@@ -87,7 +87,7 @@ QEB4 ~~ QEB9
 "
 
 #Estimate and evaluate re-specified model
-fit.example2.1 <- cfa(model.example2.1, data = data_examples)
+fit.example2.1 <- cfa(model.example2.1, data = data)
 fitMeasures(fit.example2.1)
 
 # Model comparison
@@ -115,7 +115,7 @@ optimism ~ QEB_father
 "
 
 #3.3.2 Model estimation
-fit.example3 <- sem(model.example3, data = data_examples)
+fit.example3 <- sem(model.example3, data = data)
 
 #3.3.3 Model evaluation
 fitMeasures(fit.example3)
@@ -160,7 +160,7 @@ total_effect := a + (b*c)
 "
 
 #3.4.2 Model estimation
-fit.example4 <- sem(model.example4, data = data_examples, se = "bootstrap", bootstrap = 5000)
+fit.example4 <- sem(model.example4, data = data, se = "bootstrap", bootstrap = 5000)
 
 
 #3.4.3 Model evaluation
