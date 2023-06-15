@@ -43,12 +43,12 @@ modificationindices(fit.Model_1)
 #Confirmatory Factor Analysis (CFA)
 
 Model_2 <- " 
-QEB_father =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
-SA_father =~ SA3 + SA5 + SA6 + SA12 + SA14
-IEI_father =~ IEI1 + IEI7 + IEI8 + IEI10 + IEI11
+QEB =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
+SA =~ SA3 + SA5 + SA6 + SA12 + SA14
+IEI =~ IEI1 + IEI7 + IEI8 + IEI10 + IEI11
 
-QEB_father ~~ SA_father + IEI_father
-SA_father ~~ IEI_father
+QEB ~~ SA + IEI
+SA ~~ IEI
 "
 
 fit.Model_2 <- cfa(Model_2, data = data)
@@ -65,12 +65,12 @@ modificationindices(fit.Model_2)
 #Model re-specification
 
 Model_2.1 <- " 
-QEB_father =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
-SA_father =~ SA3 + SA5 + SA6 + SA12 + SA14
-IEI_father =~ IEI1 + IEI7 + IEI8 + IEI10 + IEI11
+QEB =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
+SA =~ SA3 + SA5 + SA6 + SA12 + SA14
+IEI =~ IEI1 + IEI7 + IEI8 + IEI10 + IEI11
 
-QEB_father ~~ SA_father + IEI_father
-SA_father ~~ IEI_father
+QEB ~~ SA + IEI
+SA ~~ IEI
 
 SA5 ~~ SA6 
 SA3 ~~ SA12
@@ -87,15 +87,15 @@ summary (fit.Model_2.1, standardized = TRUE, rsquare = TRUE)
 
 Model_3 <- "
 #define independent latent variables (attachment to father)
-QEB_father =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
+QEB =~ QEB2 + QEB4 + QEB9 + QEB13 + QEB15
 
 #define dependent latent variables (self-efficacy and optimism)
-self_efficacy =~ SE1 + SE2 + SE3 + SE4 + SE5 + SE6 + SE7 + SE8 + SE9 + SE10
-optimism =~ OPT1 + OPT2 + OPT3 + OPT4 + OPT5 + OPT7
+SE =~ SE1 + SE2 + SE3 + SE4 + SE5 + SE6 + SE7 + SE8 + SE9 + SE10
+OPT =~ OPT1 + OPT2 + OPT3 + OPT4 + OPT5 + OPT7
 
 #define the links that we intend to test
-self_efficacy ~ QEB_father 
-optimism ~ QEB_father
+SE ~ QEB 
+OPT ~ QEB
 "
 
 fit.Model_3 <- sem(Model_3, data = data)
